@@ -6,6 +6,10 @@ public class Calculator {
 
     public static void main(String[] args) {
         public Calculator() {
+
+        }
+
+         public Calculator(int a) {
             
         }
         Scanner scanner = new Scanner(System.in);
