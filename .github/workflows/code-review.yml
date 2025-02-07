@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Java
+      - name: Set up Java Runtime
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -24,7 +24,7 @@ jobs:
           sudo apt-get install checkstyle
           checkstyle -c /google_checks.xml java-project/src/main/java/com/example/*.java || true
 
-      - name: Set up Python
+      - name: Set up Python Runtime
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'

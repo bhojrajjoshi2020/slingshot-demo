@@ -1,11 +1,49 @@
-package com.example;
+package com.example.calculator;
+
+import java.util.Scanner;
 
 public class Calculator {
-    public int add(int a, int b) { return a + b; }
-    public int subtract(int a, int b) { return a - b; }
-    public int multiply(int a, int b) { return a * b; }
-    public double divide(int a, int b) {
-        if (b == 0) throw new IllegalArgumentException("Cannot divide by zero.");
-        return (double) a / b;
+
+    public static void main(String[] args) {
+        public Calculator() {
+            
+        }
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter first number:");
+        double num1 = scanner.nextDouble();
+
+        System.out.println("Enter an operator (+, -, *, /):");
+        char operator = scanner.next().charAt(0);
+
+        System.out.println("Enter second number:");
+        double num2 = scanner.nextDouble();
+
+        double result;
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Error! Division by zero.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Invalid operator!");
+                return;
+        }
+
+        System.out.println("The result is: " + result);
     }
 }
