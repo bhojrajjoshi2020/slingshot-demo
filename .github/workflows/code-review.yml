@@ -1,0 +1,38 @@
+name: Code Review
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Checkstyle (Java Linter)
+        run: |
+          sudo apt-get install checkstyle
+          checkstyle -c /google_checks.xml java-project/src/main/java/com/example/*.java || true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r python-project/requirements.txt
+          pip install pylint
+
+      - name: Run Pylint (Python Linter)
+        run: pylint python-project/*.py || true
